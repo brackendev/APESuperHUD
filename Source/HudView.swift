@@ -86,7 +86,7 @@ class HudView: UIView {
         informationLabel.textAlignment = .center
         informationLabel.numberOfLines = 0
         
-        loadingActivityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
+        loadingActivityIndicator = UIActivityIndicatorView(style: .whiteLarge)
         loadingActivityIndicator.translatesAutoresizingMaskIntoConstraints = false
         
         hudMessageView.addSubview(iconImageView)
@@ -126,7 +126,7 @@ extension HudView {
             
             UIDevice.current.beginGeneratingDeviceOrientationNotifications()
             NotificationCenter.default.removeObserver(self)
-            NotificationCenter.default.addObserver(self, selector: #selector(deviceOrientationDidChange), name: NSNotification.Name.UIDeviceOrientationDidChange, object: nil)
+            NotificationCenter.default.addObserver(self, selector: #selector(deviceOrientationDidChange), name: UIDevice.orientationDidChangeNotification, object: nil)
             
             // HUD Size
             if APESuperHUD.appearance.hudSquareSize < frame.width && APESuperHUD.appearance.hudSquareSize < frame.height {
@@ -508,13 +508,13 @@ extension HudView {
         switch APESuperHUD.appearance.backgroundBlurEffect {
             
         case .dark:
-            blurEffect =  UIBlurEffect(style: UIBlurEffectStyle.dark)
+            blurEffect =  UIBlurEffect(style: UIBlurEffect.Style.dark)
             
         case .light:
-            blurEffect =  UIBlurEffect(style: UIBlurEffectStyle.light)
+            blurEffect =  UIBlurEffect(style: UIBlurEffect.Style.light)
             
         case .extraLight:
-            blurEffect =  UIBlurEffect(style: UIBlurEffectStyle.extraLight)
+            blurEffect =  UIBlurEffect(style: UIBlurEffect.Style.extraLight)
             
         case .none:
             return nil
@@ -595,7 +595,7 @@ extension HudView {
         
         isAnimating = true
         
-        UIView.animate(withDuration: APESuperHUD.appearance.animateOutTime, delay: delay, options: UIViewAnimationOptions.curveEaseIn, animations: { [weak self] in
+        UIView.animate(withDuration: APESuperHUD.appearance.animateOutTime, delay: delay, options: UIView.AnimationOptions.curveEaseIn, animations: { [weak self] in
             
             self?.alpha = 0.0
             
@@ -621,7 +621,7 @@ extension HudView {
         
         isAnimating = true
         
-        UIView.animate(withDuration: APESuperHUD.appearance.animateOutTime, delay: delay, options: UIViewAnimationOptions.curveEaseIn, animations: {
+        UIView.animate(withDuration: APESuperHUD.appearance.animateOutTime, delay: delay, options: UIView.AnimationOptions.curveEaseIn, animations: {
             
             for view in views {
                 view.alpha = 1.0
