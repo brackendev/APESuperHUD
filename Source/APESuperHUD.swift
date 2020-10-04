@@ -230,6 +230,8 @@ public class APESuperHUD {
             hudView.removeHud(animated: animated, onDone: {
                 completion?()
             })
+        } else {
+            completion?()
         }
     }
 
